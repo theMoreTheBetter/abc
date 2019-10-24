@@ -11,6 +11,8 @@
     <modules>
         <module>hadoop</module>
         <module>flink</module>
+        <module>kafka</module>
+        <module>zookeeper</module>
     </modules>
 
     <properties>
@@ -25,6 +27,8 @@
         <hadoop.version>2.7.3</hadoop.version>
         <hbase.version>1.4.9</hbase.version>
         <flink.version>1.6.4</flink.version>
+        <fastjson.version>1.2.51</fastjson.version>
+        <mysqlconn.version>5.1.39</mysqlconn.version>
     </properties>
 
     <dependencies>
@@ -33,6 +37,20 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
+        </dependency>
+
+        <!--日志-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.7</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+            <scope>runtime</scope>
         </dependency>
 
         <!--Scala-->
@@ -110,6 +128,25 @@
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-streaming-scala_${scala.binary.version}</artifactId>
             <version>${flink.version}</version>
+        </dependency>
+
+        <!--flink kafka connector-->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-kafka-0.11_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+        <!--alibaba fastjson-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysqlconn.version}</version>
         </dependency>
 
     </dependencies>
