@@ -13,6 +13,8 @@
         <module>flink</module>
         <module>kafka</module>
         <module>zookeeper</module>
+        <module>spark</module>
+        <module>hbase</module>
     </modules>
 
     <properties>
@@ -79,34 +81,7 @@
             <version>3.4.14</version>
         </dependency>
 
-        <!-- Hbase -->
-        <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-client</artifactId>
-            <version>${hbase.version}</version>
-        </dependency>
 
-        <!-- Hadoop -->
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-common</artifactId>
-            <version>${hadoop.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-hdfs</artifactId>
-            <version>${hadoop.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-mapreduce-client-core</artifactId>
-            <version>${hadoop.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-client</artifactId>
-            <version>${hadoop.version}</version>
-        </dependency>
 
         <!--flink kafka connector-->
         <dependency>
@@ -114,6 +89,7 @@
             <artifactId>flink-connector-kafka-0.11_${scala.binary.version}</artifactId>
             <version>${flink.version}</version>
         </dependency>
+
         <!--alibaba fastjson-->
         <dependency>
             <groupId>com.alibaba</groupId>

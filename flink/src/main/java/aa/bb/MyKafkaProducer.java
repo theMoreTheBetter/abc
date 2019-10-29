@@ -14,7 +14,7 @@ import java.util.Properties;
  * weixin: zhisheng_tian
  * blog: http://www.54tianzhisheng.cn/
  */
-public class KafkaUtils {
+public class MyKafkaProducer {
     public static final String broker_list = "localhost:9092";
     public static final String topic = "metric";  // kafka topic，Flink 程序中需要和这个统一
 
@@ -31,8 +31,8 @@ public class KafkaUtils {
         Map<String, String> tags = new HashMap<>();
         Map<String, Object> fields = new HashMap<>();
 
-        tags.put("cluster", "zhisheng");
-        tags.put("host_ip", "101.147.022.106");
+        tags.put("cluster", "dingzhihao");
+        tags.put("host_ip", "192.168.1.110");
 
         fields.put("used_percent", 90d);
         fields.put("max", 27244873d);
