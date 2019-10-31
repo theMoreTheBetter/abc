@@ -16,7 +16,7 @@ import java.util.Properties;
  */
 public class MyKafkaProducer {
     public static final String broker_list = "localhost:9092";
-    public static final String topic = "metric";  // kafka topic，Flink 程序中需要和这个统一
+    public static final String topic = "testtopic1";  // kafka topic，Flink 程序中需要和这个统一
 
     public static void writeToKafka() throws InterruptedException {
         Properties props = new Properties();

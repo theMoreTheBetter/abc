@@ -13,7 +13,7 @@
         <module>flink</module>
         <module>kafka</module>
         <module>zookeeper</module>
-        <module>spark</module>
+        <module>spark2</module>
         <module>hbase</module>
     </modules>
 
@@ -26,6 +26,7 @@
 
         <scala.version>2.11.12</scala.version>
         <scala.binary.version>2.11</scala.binary.version>
+        <spark.version>2.0.2</spark.version>
         <hadoop.version>2.7.3</hadoop.version>
         <hbase.version>1.4.9</hbase.version>
         <flink.version>1.6.4</flink.version>

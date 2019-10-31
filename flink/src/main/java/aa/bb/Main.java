@@ -20,7 +20,7 @@ public class Main {
         props.put("auto.offset.reset", "latest"); //value 反序列化
 
         DataStreamSource<String> dataStreamSource = env.addSource(new FlinkKafkaConsumer011<>(
-                "metric",  //kafka topic
+                "testtopic1",  //kafka topic
                 new SimpleStringSchema(),  // String 序列化
                 props)).setParallelism(1);
 

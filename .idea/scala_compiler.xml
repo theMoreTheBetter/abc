@@ -43,5 +43,11 @@
         <parameter value="$PROJECT_DIR$/hbase/target/.scala_dependencies" />
       </parameters>
     </profile>
+    <profile name="Maven 8" modules="spark2">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="$PROJECT_DIR$/spark2/target/.scala_dependencies" />
+      </parameters>
+    </profile>
   </component>
 </project>
