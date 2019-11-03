@@ -29,7 +29,7 @@
         <spark.version>2.0.2</spark.version>
         <hadoop.version>2.7.3</hadoop.version>
         <hbase.version>1.4.9</hbase.version>
-        <flink.version>1.6.4</flink.version>
+        <flink.version>1.7.2</flink.version>
         <fastjson.version>1.2.51</fastjson.version>
         <mysqlconn.version>5.1.39</mysqlconn.version>
     </properties>
