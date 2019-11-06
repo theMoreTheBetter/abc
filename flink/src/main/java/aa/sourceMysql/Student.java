@@ -1,4 +1,4 @@
-package aa.cc;
+package aa.sourceMysql;
 
 public class Student {
     public int id;

@@ -19,7 +19,6 @@ public class SocketTextStreamWordCount {
 
         // set up the streaming execution environment
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-
         //获取数据
         DataStreamSource<String> stream = env.socketTextStream(hostname, port);
 

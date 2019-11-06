@@ -15,6 +15,7 @@
         <module>zookeeper</module>
         <module>spark2</module>
         <module>hbase</module>
+        <module>scala</module>
     </modules>
 
     <properties>
@@ -80,15 +81,6 @@
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
             <version>3.4.14</version>
-        </dependency>
-
-
-
-        <!--flink kafka connector-->
-        <dependency>
-            <groupId>org.apache.flink</groupId>
-            <artifactId>flink-connector-kafka-0.11_${scala.binary.version}</artifactId>
-            <version>${flink.version}</version>
         </dependency>
 
         <!--alibaba fastjson-->
