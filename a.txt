@@ -1,0 +1,6 @@
+{"name":"Michael"}
+{"name":"Andy", "age":30}
+{"name":"Justin", "age":19}
+{"name":"Java","age":20}
+{"name":"Scala","age":20}
+{"name":"Andy","age":30}
