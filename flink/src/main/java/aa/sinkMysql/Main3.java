@@ -1,14 +1,13 @@
-package aa.dd;
+package aa.sinkMysql;
 
-import aa.cc.Student;
+import aa.sourceMysql.Student;
 import com.alibaba.fastjson.JSON;
+import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
-import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.api.functions.sink.PrintSinkFunction;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer011;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer011;
+import org.apache.flink.util.Collector;
 
 import java.util.Properties;
 
@@ -30,11 +29,10 @@ public class Main3 {
         props.put("auto.offset.reset", "latest");
 
         SingleOutputStreamOperator<Student> student = env.addSource(new FlinkKafkaConsumer011<>(
-                "student",   //这个 kafka topic 需要和上面的工具类的 topic 一致
+                "testtopic1",   //这个 kafka topic 需要和上面的工具类的 topic 一致
                 new SimpleStringSchema(),
                 props)).setParallelism(1)
                 .map(string -> JSON.parseObject(string, Student.class)); //Fastjson 解析字符串成 student 对象
-
         student.addSink(new SinkToMySQL()); //数据 sink 到 mysql
 
         env.execute("Flink add sink");

@@ -1,4 +1,4 @@
-package aa.bb;
+package aa.sourceKafka;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;

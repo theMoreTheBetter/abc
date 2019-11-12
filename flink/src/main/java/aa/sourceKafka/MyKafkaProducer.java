@@ -1,4 +1,4 @@
-package aa.bb;
+package aa.sourceKafka;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -8,17 +8,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-/**
- * 往kafka中写数据
- * 可以使用这个main函数进行测试一下
- * weixin: zhisheng_tian
- * blog: http://www.54tianzhisheng.cn/
- */
 public class MyKafkaProducer {
     public static final String broker_list = "localhost:9092";
     public static final String topic = "testtopic1";  // kafka topic，Flink 程序中需要和这个统一
 
-    public static void writeToKafka() throws InterruptedException {
+    public static void writeToKafka() {
         Properties props = new Properties();
         props.put("bootstrap.servers", broker_list);
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer"); //key 序列化

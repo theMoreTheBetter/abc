@@ -1,6 +1,6 @@
-package aa.dd;
+package aa.sinkMysql;
 
-import aa.cc.Student;
+import aa.sourceMysql.Student;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.sink.RichSinkFunction;
 
@@ -59,7 +59,7 @@ public class SinkToMySQL extends RichSinkFunction<Student> {
         Connection con = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8", "root", "root123456");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test1?useUnicode=true&characterEncoding=UTF-8", "root", "123456");
         } catch (Exception e) {
             System.out.println("-----------mysql get connection has exception , msg = "+ e.getMessage());
         }

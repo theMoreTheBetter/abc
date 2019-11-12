@@ -1,4 +1,4 @@
-package aa.cc;
+package aa.sourceMysql;
 
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
