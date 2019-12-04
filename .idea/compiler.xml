@@ -6,10 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="basicjava" />
         <module name="flink" />
         <module name="hadoop" />
         <module name="hbase" />
+        <module name="hive" />
         <module name="kafka" />
+        <module name="netty" />
         <module name="scala" />
         <module name="spark2" />
         <module name="zookeeper" />
