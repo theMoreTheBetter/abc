@@ -19,6 +19,7 @@
         <module>basicjava</module>
         <module>netty</module>
         <module>hive</module>
+        <module>es6</module>
     </modules>
 
     <properties>
@@ -85,6 +86,13 @@
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
             <version>3.4.14</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
+            <scope>provided</scope>
         </dependency>
 
 

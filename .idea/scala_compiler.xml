@@ -25,6 +25,12 @@
         <parameter value="D:\DevProjects\IdeaProject\abc\hive\target/.scala_dependencies" />
       </parameters>
     </profile>
+    <profile name="Maven 13" modules="es6">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="D:\DevProjects\IdeaProject\abc\es6\target/.scala_dependencies" />
+      </parameters>
+    </profile>
     <profile name="Maven 2" modules="hadoop">
       <parameters>
         <parameter value="-dependencyfile" />
