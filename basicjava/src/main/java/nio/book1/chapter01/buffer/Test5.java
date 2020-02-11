@@ -1,13 +1,16 @@
-package nio.book1.chapter01;
+package nio.book1.chapter01.buffer;
 
 import java.nio.ByteBuffer;
 
-public class TestMark {
+/**
+ * mark() 缓冲区的位置设置标记
+ */
+public class Test5 {
     public static void main(String[] args) {
-        byte[] byteArray = new byte[]{1,2,4,5,6,7};
+        byte[] byteArray = new byte[]{1,2,3};
         ByteBuffer byteBuffer = ByteBuffer.wrap(byteArray);
 
-        System.out.println("bytebuffer.capacity=" + byteBuffer.capacity());
+        System.out.println("bytebuffer.capacity="+byteBuffer.capacity());
         System.out.println();
 
         byteBuffer.position(1);
@@ -15,9 +18,9 @@ public class TestMark {
 
         System.out.println("bytebuffer.position=" + byteBuffer.position());
         byteBuffer.position(2);
-        //重置到mark处
         byteBuffer.reset();
         System.out.println();
-        System.out.println("bytebuffer.positon=" + byteBuffer.position());
+        System.out.println("bytebuffer.position=" + byteBuffer.position());
+
     }
 }

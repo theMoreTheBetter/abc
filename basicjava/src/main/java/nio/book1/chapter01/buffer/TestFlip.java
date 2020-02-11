@@ -1,4 +1,4 @@
-package nio.book1.chapter01;
+package nio.book1.chapter01.buffer;
 
 import java.nio.ByteBuffer;
 

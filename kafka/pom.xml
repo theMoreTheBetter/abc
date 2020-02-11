@@ -13,7 +13,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <kafka.version>0.11.0.3</kafka.version>
+        <kafka.version>0.11.0.2</kafka.version>
     </properties>
 
 

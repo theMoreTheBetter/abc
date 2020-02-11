@@ -1,9 +1,6 @@
 package util;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import model.MbTranHist;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
@@ -14,9 +11,20 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.nio.entity.NStringEntity;
 import org.apache.http.util.EntityUtils;
+import org.elasticsearch.action.bulk.BackoffPolicy;
+import org.elasticsearch.action.bulk.BulkProcessor;
+import org.elasticsearch.action.bulk.BulkRequest;
+import org.elasticsearch.action.bulk.BulkResponse;
+import org.elasticsearch.client.Client;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.transport.TransportAddress;
+import org.elasticsearch.common.unit.ByteSizeUnit;
+import org.elasticsearch.common.unit.ByteSizeValue;
+import org.elasticsearch.common.unit.TimeValue;
+import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,6 +32,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.*;
 
 public class EsUtils {
@@ -207,8 +217,9 @@ public class EsUtils {
 
         try(RestClient restClient = initRestClient()) {
             Response response = restClient.performRequest(GET,endpoint);
-            LOG.info("获取到的文档为：" + EntityUtils.toString(response.getEntity()));
-            return EntityUtils.toString(response.getEntity());
+            String respJson = EntityUtils.toString(response.getEntity());
+            LOG.info("获取到的文档为：" + respJson);
+            return respJson;
         } catch (IOException e) {
             LOG.error("获取文档失败：" + e);
         }
@@ -233,8 +244,9 @@ public class EsUtils {
 
         try(RestClient restClient = initRestClient()) {
             Response response = restClient.performRequest(method,endpoint,Collections.<String, String>emptyMap(),entity);
-            LOG.info("获取到文档："+EntityUtils.toString(response.getEntity()));
-            return EntityUtils.toString(response.getEntity());
+            String respJson = EntityUtils.toString(response.getEntity());
+            LOG.info("获取到的文档为：" + respJson);
+            return respJson;
 
         } catch (IOException e) {
             LOG.error("获取文档失败:",e);
@@ -253,8 +265,9 @@ public class EsUtils {
 
         try(RestClient restClient = initRestClient()) {
             Response response = restClient.performRequest(POST,endpoint,Collections.<String, String>emptyMap(),entity);
-            LOG.info("查询所有数据：" + EntityUtils.toString(response.getEntity()));
-            return EntityUtils.toString(response.getEntity());
+            String respJson = EntityUtils.toString(response.getEntity());
+            LOG.info("查询所有数据：" + respJson);
+            return respJson;
         } catch (IOException e) {
             LOG.error("查询所有数据失败：",e);
         }
@@ -307,5 +320,54 @@ public class EsUtils {
         } catch (IOException e) {
             LOG.error("删除索引数据失败",e);
         }
+    }
+
+    public BulkProcessor bulkProcessor() throws UnknownHostException {
+
+        Settings settings = Settings.builder().put("cluster.name", "elasticsearch").build();
+
+        Client client = new PreBuiltTransportClient(settings)
+                .addTransportAddress(new TransportAddress(InetAddress.getByName("http://192.168.10.33"), Integer.parseInt("9300")));
+
+        BulkProcessor.Listener listener = new BulkProcessor.Listener() {
+            @Override
+            public void beforeBulk(long executionId, BulkRequest request) {
+                //bulk请求前执行
+            }
+
+            @Override
+            public void afterBulk(long executionId, BulkRequest request, BulkResponse response) {
+                //bulk请求后执行
+            }
+
+            @Override
+            public void afterBulk(long executionId, BulkRequest request, Throwable failure) {
+                //失败后执行
+            }
+        };
+
+        BulkProcessor build = BulkProcessor.builder(client, new BulkProcessor.Listener() {
+            @Override
+            public void beforeBulk(long l, BulkRequest bulkRequest) {
+
+            }
+
+            @Override
+            public void afterBulk(long l, BulkRequest bulkRequest, BulkResponse bulkResponse) {
+
+            }
+
+            @Override
+            public void afterBulk(long l, BulkRequest bulkRequest, Throwable throwable) {
+                LOG.error("{} data bulk failed,reason :{}", bulkRequest.numberOfActions(), throwable);
+            }
+
+        }).setBulkActions(1000)
+                .setBulkSize(new ByteSizeValue(5, ByteSizeUnit.MB))
+                .setFlushInterval(TimeValue.timeValueSeconds(5))
+                .setConcurrentRequests(1)
+                .setBackoffPolicy(BackoffPolicy.exponentialBackoff(TimeValue.timeValueMillis(100), 3))
+                .build();
+        return build;
     }
 }
