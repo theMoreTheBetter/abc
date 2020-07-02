@@ -36,7 +36,7 @@
         <hbase.version>1.3.1</hbase.version>
         <flink.version>1.9.1</flink.version>
         <fastjson.version>1.2.51</fastjson.version>
-        <mysqlconn.version>5.1.39</mysqlconn.version>
+        <mysqlconn.version>8.0.16</mysqlconn.version>
         <hive.version>1.2.1</hive.version>
     </properties>
 
